@@ -7,7 +7,7 @@ CLI_SRCS_TEST.o=	$(CLI_SRCS_TEST.c:%.c=%.o)
 
 LDFLAGS.cli_test=	-L.. -L. $(READLINE_LDFLAGS) -lcli -lusl -lreadline -lcurses -lc
 
-CFLAGS=			$(CFLAGS.optimize) -MMD -Wall -Werror -I.. $(READLINE_CFLAGS)
+CFLAGS=			$(CFLAGS.optimize) -MMD -Wall -Werror -I.. $(READLINE_CFLAGS) -fPIC
 
 .PHONY:			all test clean
 

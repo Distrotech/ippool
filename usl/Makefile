@@ -14,7 +14,7 @@ LIBS.dmalloc=		-ldmalloc
 endif
 
 CPPFLAGS+=		$(CFLAGS.optimize) -g
-CFLAGS=			-I. -MMD -Wall -Werror $(CPPFLAGS) $(CPPFLAGS.dmalloc)
+CFLAGS=			-I. -MMD -Wall -Werror $(CPPFLAGS) $(CPPFLAGS.dmalloc) -fPIC
 
 .PHONY:			all test clean
 

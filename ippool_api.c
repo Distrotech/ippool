@@ -24,6 +24,7 @@
  */
 
 #include <net/ethernet.h>
+#include <rpc/rpc.h>
 
 #include "usl.h"
 

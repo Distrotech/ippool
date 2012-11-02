@@ -16,7 +16,7 @@ LDFLAGS	+= -shared
 all:	ippool.so
 
 ippool.so: ippool.c
-	$(CC) -o $@ $(LDFLAGS) $(CFLAGS) -D_linux_=1 ippool.c ../ippool_rpc_client.o ../ippool_rpc_xdr.o
+	$(CC) -o $@ $(LDFLAGS) $(CFLAGS) -D_linux_=1 ippool.c ../ippool_rpc_client.o ../ippool_rpc_xdr.o -ltirpc
 
 install: ippool.so
 	$(INSTALL) -d $(DESTDIR)$(PPPD_LIBDIR)

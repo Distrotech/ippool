@@ -15,7 +15,7 @@
 # Points to pppd install. 
 # By default, pppd headers are assumed to be in /usr/include/pppd. but 
 # can be pointed to a local pppd source tree if desired.
-PPPD_VERSION=		2.4.4
+PPPD_VERSION=		2.4.5
 # PPPD_SRCDIR=		/usr/local/src/ppp-2.4.4
 # PPPD_LIBDIR=		/usr/lib/pppd/2.4.4
 
@@ -81,10 +81,10 @@ LIBS.dmalloc=		-ldmalloc
 export USE_DMALLOC
 endif
 
-CPPFLAGS=		$(CPPFLAGS.ippooltest)
+CPPFLAGS=		$(CPPFLAGS.ippooltest) -fPIC
 CFLAGS=			-I. -Iusl -Icli -MMD -Wall -g $(CPPFLAGS) $(CPPFLAGS.dmalloc)
-LDFLAGS.ippoold=	-Wl,-E -L. -Lusl -lusl -lnsl -ldl $(LIBS.dmalloc) -lc
-LDFLAGS.ippoolconfig=	-Lcli -lcli -lreadline -lcurses -lnsl $(LIBS.dmalloc) -lc
+LDFLAGS.ippoold=	-Wl,-E -L. -Lusl -lusl -ldl $(LIBS.dmalloc) -ltirpc -lnsl -lportablexdr -lpthread -ldl -ltinfo
+LDFLAGS.ippoolconfig=	-Lcli -lcli -lreadline -lcurses -lnsl $(LIBS.dmalloc) -lc -ltirpc -lportablexdr -lpthread -ldl -ltinfo
 
 OPT_CFLAGS?=		-O
 
@@ -158,7 +158,7 @@ ippoolconfig:		$(IPPOOLCONFIG_SRCS.o)
 			$(CC) -o $@ $^ $(LDFLAGS.ippoolconfig)
 
 %.o:	%.c
-			$(CC) -c $(CFLAGS) $< -o $@
+			$(CC) -fPIC -c $(CFLAGS) $< -o $@
 
 install:		all
 			@for d in $(SUBDIRS); do $(MAKE) -C $$d $(MFLAGS) $@; if [ $$? -ne 0 ]; then exit 1; fi; done
