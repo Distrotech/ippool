@@ -83,8 +83,8 @@ endif
 
 CPPFLAGS=		$(CPPFLAGS.ippooltest) -fPIC
 CFLAGS=			-I. -Iusl -Icli -MMD -Wall -g $(CPPFLAGS) $(CPPFLAGS.dmalloc)
-LDFLAGS.ippoold=	-Wl,-E -L. -Lusl -lusl -ldl $(LIBS.dmalloc) -ltirpc -lnsl -lportablexdr -lpthread -ldl -ltinfo
-LDFLAGS.ippoolconfig=	-Lcli -lcli -lreadline -lcurses -lnsl $(LIBS.dmalloc) -lc -ltirpc -lportablexdr -lpthread -ldl -ltinfo
+LDFLAGS.ippoold=	-Wl,-E -L. -Lusl -lusl -ldl $(LIBS.dmalloc) -ltirpc -lnsl -lportablexdr -lpthread -ldl
+LDFLAGS.ippoolconfig=	-Lcli -lcli -lreadline -lcurses -lnsl $(LIBS.dmalloc) -lc -ltirpc -lportablexdr -lpthread -ldl
 
 OPT_CFLAGS?=		-O
 
